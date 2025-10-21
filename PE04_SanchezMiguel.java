@@ -15,7 +15,7 @@ public class PE04_SanchezMiguel {
         int varPrincipal = 0;
 
         //Bucle principal del programa
-        while (varPrincipal != 6) {
+        do {
             System.out.println("\nBenvingut de nou - Que vols controlar?");
             System.out.println("1. Control de llums");
             System.out.println("2. Control de persianes");
@@ -27,8 +27,75 @@ public class PE04_SanchezMiguel {
             varPrincipal = j.nextInt();
 
             switch (varPrincipal) {
-
+                case 1 :
+                    controlarLlums(j);
+                    break;
+                case 2:
+                    //Opcio de persianes no feta
+                    break;
+                case 3:
+                    //Opcio aire acondicionat no feta
+                    break;
+                case 4:
+                    //Opcio altaveus no feta
+                    break;
+                case 5:
+                    //Opcio cortines no feta
+                    break;
+                case 6:
+                    System.out.println("Apagant el sistema domotic... Fins aviat");
+                    break;
+                default:
             }
-        }
+        } while ( varPrincipal != 6);
+
+        j.close();
+
     }
+
+
+// - - - - - - - - - - Definicio de metodes - - - - - - - - - - 
+// - - - - - - - - - - Metode: Control de llums -  - - - - - - 
+public static void controlarLlums(Scanner j) {
+    int varLlums = 0;
+
+    do {
+        System.out.println("\nMenu controlador de llums");
+        System.out.println("1. Encendre/Apagar llums d'una habitacio");
+        System.out.println("2. Encendre/Apagar totes les llums");
+        System.out.println("3. Mostrar estat actual");
+        System.out.println("4. Tornar al menú principal");
+        System.out.println("Selecciona una opcio: ");
+        varLlums = j.nextInt();
+
+        switch (varLlums) {
+            case 1: 
+                controlarHabitacio(j);
+                break;
+            case 2: 
+                encendreApagarTotes();
+                break;
+            case 3:
+                mostrarEstat();
+                break;
+            case 4:
+                System.out.println("Tornant al menú prinipal...");
+                break;
+            default:
+                System.out.println("Opcio no valida");
+        }
+    }   while (varLlums != 4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }
