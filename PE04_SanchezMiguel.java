@@ -71,10 +71,13 @@ public class PE04_SanchezMiguel {
             switch (varLlums) {
                 case 1: 
                     controlarHabitacio(j);
-                    break;
+                break;
                 case 2:
                     controlarTotes(j);
-                    break;
+                break;
+                case 3:
+                    mostrarEstat();
+                break;
                 case 4:
                     System.out.println("Tornant al menú prinipal...");
                     break;
@@ -110,13 +113,13 @@ public class PE04_SanchezMiguel {
                 nomHabitacio = "Cuina";
             break;
             case 3:
-                nomHabitacio = "Habitacio1";
+                nomHabitacio = "Habitació 1";
             break;
             case 4:
-                nomHabitacio = "Habitacio2";
+                nomHabitacio = "Habitació 2";
             break;
             case 5:
-                nomHabitacio = "Habitacio3";
+                nomHabitacio = "Habitació 3";
             break;
             case 6:
                 nomHabitacio = "Bany";
