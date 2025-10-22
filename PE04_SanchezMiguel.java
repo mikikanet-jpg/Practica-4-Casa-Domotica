@@ -72,6 +72,9 @@ public class PE04_SanchezMiguel {
                 case 1: 
                     controlarHabitacio(j);
                     break;
+                case 2:
+                    controlarTotes(j);
+                    break;
                 case 4:
                     System.out.println("Tornant al menú prinipal...");
                     break;
@@ -202,6 +205,16 @@ public class PE04_SanchezMiguel {
         llumBany = encesApagat;
 
         System.out.println("Totes les llums estan "  + encesApagat + "  correctament.");
+    }
+        //- - - - - - - - - - Mostar estat - - - - - - - - -
+    public static void mostrarEstat() {
+        System.out.println("\n Estat actual de les llums:");
+        System.out.println("Menjador ("  + llumMenjador + ")");
+        System.out.println("Cuina ("  + llumCuina + ")");
+        System.out.println("Habitacio 1 ("  + llumH1 + ")");
+        System.out.println("Habitacio 2 ("  + llumH2 + ")");
+        System.out.println("Habitacio 3 ("  + llumH3 + ")");
+        System.out.println("Bany ("  + llumBany + ")");
     }
 }
 
