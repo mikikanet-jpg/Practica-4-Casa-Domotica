@@ -1,7 +1,6 @@
 package Practica4;
 import java.util.Scanner;
 public class PE04_SanchezMiguel {
-
     //Variables globals per llum
     static String llumMenjador = "off";
     static String llumCuina = "off";
@@ -13,7 +12,6 @@ public class PE04_SanchezMiguel {
     public static void main(String[] args) {
         Scanner j = new Scanner(System.in);
         int varPrincipal = 0;
-
         //Bucle principal del programa
         do {
             System.out.println("\nBenvingut de nou - Que vols controlar?");
@@ -128,11 +126,11 @@ public class PE04_SanchezMiguel {
                 System.out.println("Habitacio no valida");
                 return;
         }
-        comprovarEstat(nomHabitacio, encesApagat);
+        controlarEstat(nomHabitacio, encesApagat);
     }
 
     //- - - - - Comprovar estat per poder enviar els missatges - - - - -
-    public static void comprovarEstat(String habitacio, String encesApagat) {
+    public static void controlarEstat(String habitacio, String encesApagat) {
 
         switch (habitacio) {
             case "Menjador":
@@ -197,7 +195,7 @@ public class PE04_SanchezMiguel {
 
     //- - - - - - - - Controlar totes les habitacions - - - - - - - - 
     public static void controlarTotes (Scanner j) {
-        System.out.println("\nescriu on/off per totes les habitacions: ");
+        System.out.println("\nEscriu on/off per totes les habitacions: ");
         String encesApagat = j.next().toLowerCase();
 
         llumMenjador = encesApagat;
@@ -211,7 +209,7 @@ public class PE04_SanchezMiguel {
     }
         //- - - - - - - - - - Mostar estat - - - - - - - - -
     public static void mostrarEstat() {
-        System.out.println("\n Estat actual de les llums:");
+        System.out.println("\nEstat actual de les llums:");
         System.out.println("Menjador ("  + llumMenjador + ")");
         System.out.println("Cuina ("  + llumCuina + ")");
         System.out.println("Habitacio 1 ("  + llumH1 + ")");
@@ -219,6 +217,69 @@ public class PE04_SanchezMiguel {
         System.out.println("Habitacio 3 ("  + llumH3 + ")");
         System.out.println("Bany ("  + llumBany + ")");
     }
+//---------------------------------------------------------------------
+//Aire, presianes, cortines i altaveus amb variables locals i sense automatitzacio.
+
+public static void controlarAire(Scanner j) {
+    String aireMenjador ="off";
+    String aireCuina ="off";
+    String aireH1 ="off";
+    String aireH2 ="off";
+    String aireH3 ="off";
+    String aireBany ="off";
+
+    int varAire = 0;
+    do{
+        System.out.println("\nMENÚ AIRE CONDICIONAT");
+        System.out.println("1. Encendre/Apagar una habitació");
+        System.out.println("2. Encendre/Apagar tot l'aire condicionat");
+        System.out.println("3. Mostrar estat actual");
+        System.out.println("4. Tornar al menú principal");
+        System.out.print("Selecciona una opció: ");
+        varAire = j.nextInt();
+
+        switch (varAire) {
+            case 1:
+                System.out.println("\nSelecciona l'habitació:");
+                System.out.println("1- Menjador");
+                System.out.println("2- Cuina");
+                System.out.println("3- H1");
+                System.out.println("4- H2");
+                System.out.println("5- H3");
+                System.out.println("6- Bany");
+                System.out.print("Opció: ");
+                int hab = j.nextInt();
+
+                System.out.print("Escriu on/off: ");
+                String accio = j.next().toLowerCase();
+
+                switch (hab) {
+                    case 1:
+                        aireMenjador
+                }
+        }
+    }  while (varAire != 4);
+}
+
+public static String comprovarEstatLocal(String habitacio, String accio, String estatActual, String tipus) {
+    if (estatActual.equals(accio)) {
+        System.out.println("El " + tipus + " del " + habitacio + " ja està " + accio + ".");
+    } else {
+        estatActual = accio;
+        System.out.println("El " + tipus + " del " + habitacio + " s’ha posat " + accio + " correctament.");
+    }
+    return estatActual;
+}
+
+
+
+
+
+
+
+
+
+
 }
 
 
