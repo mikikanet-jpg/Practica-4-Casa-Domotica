@@ -385,6 +385,89 @@ public static void controlarPersianes(Scanner j) {
     } while (varPersianes != 4);
 }
 
+public static void controlarCortines(Scanner j) {
+    //var locals
+    String  corMenjador = "off";
+    String  corCuina = "off";
+    String  corBany = "off";
+    String  corH1 = "off";
+    String  corH2 = "off";
+    String  corH3 = "off";
+    int varCortines = 0;
+
+    do {
+        System.out.println("\nMENÚ CORTINES");
+        System.out.println("1. Obrir/Tancar una cortina");
+        System.out.println("2. Obrir/Tancar totes les cortines");
+        System.out.println("3. Mostrar estat actual");
+        System.out.println("4. Tornar al menú principal");
+        System.out.print("Selecciona una opció: ");
+        varCortines = j.nextInt();
+
+        switch (varCortines) {
+            case 1 :
+                System.out.println("\nSelecciona l'habitació:");
+                System.out.println("1- Menjador");
+                System.out.println("2- Cuina");
+                System.out.println("3- H1");
+                System.out.println("4- H2");
+                System.out.println("5- H3");
+                System.out.println("6- Bany");
+                System.out.print("Opció: ");
+                int hab = j.nextInt();
+
+                System.out.print("Escriu on/off (on = oberta / off = tancada): ");
+                String onOff = j.next().toLowerCase();
+
+                switch (hab) {
+                    case 1:
+                        corMenjador = comprovarEstatLocal("Menjador", onOff, corMenjador, "persiana");
+                    break;
+                    case 2:
+                        corCuina = comprovarEstatLocal("Cuina", onOff, corCuina, "persiana");
+                    break;
+                    case 3:
+                        corH1 = comprovarEstatLocal("H1", onOff, corH1, "persiana");
+                    break;
+                    case 4:
+                        corH2 = comprovarEstatLocal("H2", onOff, corH2, "persiana");
+                    break;
+                    case 5:
+                        corH3 = comprovarEstatLocal("H3", onOff, corH3, "persiana");
+                    break;
+                    case 6:
+                        corBany = comprovarEstatLocal("Bany", onOff, corBany, "persiana");
+                    break;
+                    default: 
+                    System.out.println("Habitació no vàlida!");
+                    break;
+                }
+            break;
+            case 2:
+                System.out.print("\nEscriu on/off per totes les persianes: ");
+                String accio = j.next().toLowerCase();
+                corMenjador = corCuina = corBany = corH1 = corH2 = corH3 = accio;
+                System.out.println("Totes les persianes s'han posat " + accio + " correctament.");
+            break;
+            case 3:
+                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("Menjador (" + corMenjador + ")");
+                System.out.println("Cuina (" + corCuina + ")");
+                System.out.println("H1 (" + corH1 + ")");
+                System.out.println("H2 (" + corH2 + ")");
+                System.out.println("H3 (" + corH3 + ")");
+                System.out.println("Bany (" + corBany + ")");
+            break;
+            case 4:
+                System.out.println("Tornant al menú principal...");
+            break;
+            default:
+                System.out.println("Opció no vàlida");
+            break;
+        }
+    } while (varCortines != 4);
+}
+
 
 
 
