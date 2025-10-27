@@ -17,7 +17,7 @@ public class PE04_SanchezMiguel {
             System.out.println("\nBenvingut de nou - Que vols controlar?");
             System.out.println("1. Control de llums");
             System.out.println("2. Control de persianes");
-            System.out.println("3.control d'aire acondicionat");
+            System.out.println("3. Control d'aire acondicionat");
             System.out.println("4. Control  d'altaveus");
             System.out.println("5. Control de cortines");
             System.out.println("6. Sortir del programa");
@@ -27,22 +27,22 @@ public class PE04_SanchezMiguel {
             switch (varPrincipal) {
                 case 1 :
                     controlarLlums(j);
-                    break;
+                break;
                 case 2:
-                    //Opcio de persianes no feta
-                    break;
+                    controlarPersianes(j);
+                break;
                 case 3:
-                    //Opcio aire acondicionat no feta
-                    break;
+                    controlarAire(j);    
+                break;
                 case 4:
                     //Opcio altaveus no feta
-                    break;
+                break;
                 case 5:
                     //Opcio cortines no feta
-                    break;
+                break;
                 case 6:
                     System.out.println("Apagant el sistema domotic... Fins aviat");
-                    break;
+                break;
                 default:
             }
         } while ( varPrincipal != 6);
@@ -276,6 +276,7 @@ public static void controlarAire(Scanner j) {
                         System.out.println("Habitacio no valida");
                         break;
                 }
+                break;
             case 2:
                 System.out.print("\nEscriu on/off per tot l'aire condicionat: ");
                 String accio = j.next().toLowerCase();
@@ -301,12 +302,173 @@ public static void controlarAire(Scanner j) {
     }  while (varAire != 4);
 }
 
-public static String comprovarEstatLocal(String habitacio, String accio, String estatActual, String tipus) {
-    if (estatActual.equals(accio)) {
-        System.out.println("El " + tipus + " del " + habitacio + " ja està " + accio + ".");
+public static void controlarPersianes(Scanner j) {
+    //var locals
+    String  perMenjador = "off";
+    String  perCuina = "off";
+    String  perBany = "off";
+    String  perH1 = "off";
+    String  perH2 = "off";
+    String  perH3 = "off";
+    int varPersianes =j.nextInt();
+
+    do {
+        System.out.println("\nMENÚ PERSIANES");
+        System.out.println("1. Obrir/Tancar una persiana");
+        System.out.println("2. Obrir/Tancar totes les persianes");
+        System.out.println("3. Mostrar estat actual");
+        System.out.println("4. Tornar al menú principal");
+        System.out.print("Selecciona una opció: ");
+        varPersianes = j.nextInt();
+
+        switch (varPersianes) {
+            case 1 :
+                System.out.println("\nSelecciona l'habitació:");
+                System.out.println("1- Menjador");
+                System.out.println("2- Cuina");
+                System.out.println("3- H1");
+                System.out.println("4- H2");
+                System.out.println("5- H3");
+                System.out.println("6- Bany");
+                System.out.print("Opció: ");
+                int hab = j.nextInt();
+
+                System.out.print("Escriu on/off (on = oberta / off = tancada): ");
+                String onOff = j.next().toLowerCase();
+
+                switch (hab) {
+                    case 1:
+                        perMenjador = comprovarEstatLocal("Menjador", onOff, perMenjador, "persiana");
+                    break;
+                    case 2:
+                        perCuina = comprovarEstatLocal("Cuina", onOff, perCuina, "persiana");
+                    break;
+                    case 3:
+                        perH1 = comprovarEstatLocal("H1", onOff, perH1, "persiana");
+                    break;
+                    case 4:
+                        perH2 = comprovarEstatLocal("H2", onOff, perH2, "persiana");
+                    break;
+                    case 5:
+                        perH3 = comprovarEstatLocal("H3", onOff, perH3, "persiana");
+                    break;
+                    case 6:
+                        perBany = comprovarEstatLocal("Bany", onOff, perBany, "persiana");
+                    break;
+                    default: 
+                    System.out.println("Habitació no vàlida!");
+                    break;
+                }
+            break;
+            case 2:
+                System.out.print("\nEscriu on/off per totes les persianes: ");
+                String accio = j.next().toLowerCase();
+                perMenjador = perCuina = perBany = perH1 = perH2 = perH3 = accio;
+                System.out.println("Totes les persianes s'han posat " + accio + " correctament.");
+            break;
+            case 3:
+                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("Menjador (" + perMenjador + ")");
+                System.out.println("Cuina (" + perCuina + ")");
+                System.out.println("H1 (" + perH1 + ")");
+                System.out.println("H2 (" + perH2 + ")");
+                System.out.println("H3 (" + perH3 + ")");
+                System.out.println("Bany (" + perBany + ")");
+            break;
+            case 4:
+                System.out.println("Tornant al menú principal...");
+            break;
+            default:
+                System.out.println("Opció no vàlida");
+            break;
+        }
+    } while (varPersianes != 4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public static String comprovarEstatLocal(String habitacio, String onOff, String estatActual, String tipus) {
+    if (estatActual.equals(onOff)) {
+        System.out.println("El " + tipus + " del " + habitacio + " ja està " + onOff + ".");
     } else {
-        estatActual = accio;
-        System.out.println("El " + tipus + " del " + habitacio + " s’ha posat " + accio + " correctament.");
+        estatActual = onOff;
+        System.out.println("El " + tipus + " del " + habitacio + " s'ha posat " + onOff + " correctament.");
     }
     return estatActual;
 }
