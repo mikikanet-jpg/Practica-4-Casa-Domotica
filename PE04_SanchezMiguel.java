@@ -35,10 +35,10 @@ public class PE04_SanchezMiguel {
                     controlarAire(j);    
                 break;
                 case 4:
-                    //Opcio altaveus no feta
+                    controlarAltaveus(j);
                 break;
                 case 5:
-                    //Opcio cortines no feta
+                    controlarCortines(j);
                 break;
                 case 6:
                     System.out.println("Apagant el sistema domotic... Fins aviat");
@@ -98,7 +98,7 @@ public class PE04_SanchezMiguel {
         System.out.println("Selcciona una opcio: ");
         int hab = j.nextInt();
 
-        System.out.println("Escriu on/off: ");
+        System.out.print("Escriu on/off (on = ences / off = apagat): ");
         String encesApagat = j.next().toLowerCase();
 
         String nomHabitacio = "";
@@ -468,83 +468,87 @@ public static void controlarCortines(Scanner j) {
     } while (varCortines != 4);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+public static void controlarAltaveus(Scanner j) {
+    //var locals
+    String  altMenjador = "off";
+    String  altCuina = "off";
+    String  altBany = "off";
+    String  altH1 = "off";
+    String  altH2 = "off";
+    String  altH3 = "off";
+    int varAltaveus = 0;
+    do {
+        System.out.println("\nMENÚ ALTAVEUS");
+        System.out.println("1. Encendre/Apagar un altaveu");
+        System.out.println("2. Encendre/Apagar tots els altaveus");
+        System.out.println("3. Mostrar estat actual");
+        System.out.println("4. Tornar al menú principal");
+        System.out.print("Selecciona una opció: ");
+        varAltaveus = j.nextInt();
+
+        switch (varAltaveus) {
+            case 1 :
+                System.out.println("\nSelecciona l'habitació:");
+                System.out.println("1- Menjador");
+                System.out.println("2- Cuina");
+                System.out.println("3- H1");
+                System.out.println("4- H2");
+                System.out.println("5- H3");
+                System.out.println("6- Bany");
+                System.out.print("Opció: ");
+                int hab = j.nextInt();
+
+                System.out.print("Escriu on/off (on = ences / off = apagat): ");
+                String onOff = j.next().toLowerCase();
+
+                switch (hab) {
+                    case 1:
+                        altMenjador = comprovarEstatLocal("Menjador", onOff, altMenjador, "persiana");
+                    break;
+                    case 2:
+                        altCuina = comprovarEstatLocal("Cuina", onOff, altCuina, "persiana");
+                    break;
+                    case 3:
+                        altH1 = comprovarEstatLocal("H1", onOff, altH1, "persiana");
+                    break;
+                    case 4:
+                        altH2 = comprovarEstatLocal("H2", onOff, altH2, "persiana");
+                    break;
+                    case 5:
+                        altH3 = comprovarEstatLocal("H3", onOff, altH3, "persiana");
+                    break;
+                    case 6:
+                        altBany = comprovarEstatLocal("Bany", onOff, altBany, "persiana");
+                    break;
+                    default: 
+                    System.out.println("Habitació no vàlida!");
+                    break;
+                }
+            break;
+            case 2:
+                System.out.print("\nEscriu on/off per totes les persianes: ");
+                String accio = j.next().toLowerCase();
+                altMenjador = altCuina = altBany = altH1 = altH2 = altH3 = accio;
+                System.out.println("Totes les persianes s'han posat " + accio + " altrectament.");
+            break;
+            case 3:
+                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("Menjador (" + altMenjador + ")");
+                System.out.println("Cuina (" + altCuina + ")");
+                System.out.println("H1 (" + altH1 + ")");
+                System.out.println("H2 (" + altH2 + ")");
+                System.out.println("H3 (" + altH3 + ")");
+                System.out.println("Bany (" + altBany + ")");
+            break;
+            case 4:
+                System.out.println("Tornant al menú principal...");
+            break;
+            default:
+                System.out.println("Opció no vàlida");
+            break;
+        }
+    } while (varAltaveus!= 4);
+}
 
 public static String comprovarEstatLocal(String habitacio, String onOff, String estatActual, String tipus) {
     if (estatActual.equals(onOff)) {
@@ -556,24 +560,4 @@ public static String comprovarEstatLocal(String habitacio, String onOff, String 
     return estatActual;
 }
 
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
