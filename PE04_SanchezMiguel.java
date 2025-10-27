@@ -251,12 +251,52 @@ public static void controlarAire(Scanner j) {
                 int hab = j.nextInt();
 
                 System.out.print("Escriu on/off: ");
-                String accio = j.next().toLowerCase();
+                String onOff = j.next().toLowerCase();
 
                 switch (hab) {
                     case 1:
-                        aireMenjador
+                        aireMenjador = comprovarEstatLocal("Menjador", onOff, aireMenjador, "Aire acondicionat");
+                    break;
+                    case 2:
+                        aireCuina = comprovarEstatLocal("Cuina", onOff, aireCuina, "Aire acondicionat");
+                    break;
+                    case 3:
+                        aireH1 = comprovarEstatLocal("Habitacio 1", onOff, aireH1, "Aire acondicionat");
+                    break;
+                    case 4:
+                        aireH2 = comprovarEstatLocal("Habitacio 2", onOff, aireH2, "Aire acondicionat");
+                    break;
+                    case 5:
+                        aireH3 = comprovarEstatLocal("Habitacio 3", onOff, aireH3, "Aire acondicionat");
+                    break;
+                    case 6:
+                        aireBany = comprovarEstatLocal("Bany", onOff, aireBany, "Aire acondicionat");
+                    break;
+                    default:
+                        System.out.println("Habitacio no valida");
+                        break;
                 }
+            case 2:
+                System.out.print("\nEscriu on/off per tot l'aire condicionat: ");
+                String accio = j.next().toLowerCase();
+                aireMenjador = aireCuina = aireBany = aireH1 = aireH2 = aireH3 = accio;
+                System.out.println("Tot l'aire condicionat s'ha posat " + accio + " correctament.");
+            break;
+            case 3:
+                System.out.println("\nEstat actual de l'aire condicionat:");
+                System.out.println("Menjador (" + aireMenjador + ")");
+                System.out.println("Cuina (" + aireCuina + ")");
+                System.out.println("H1 (" + aireH1 + ")");
+                System.out.println("H2 (" + aireH2 + ")");
+                System.out.println("H3 (" + aireH3 + ")");
+                System.out.println("Bany (" + aireBany + ")");    
+            break;
+            case 4:
+                System.out.println("Tornant al menu principal.....");
+            break;
+            default:
+                    System.out.println("Opcio no valida");
+            break;
         }
     }  while (varAire != 4);
 }
