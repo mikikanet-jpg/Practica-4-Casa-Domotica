@@ -1,19 +1,25 @@
 package Practica4;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class PE04_SanchezMiguel {
     //Variables globals per llum
-    static String llumMenjador = "off";
-    static String llumCuina = "off";
-    static String llumBany = "off";
-    static String llumH1 = "off";
-    static String llumH2 = "off";
-    static String llumH3 = "off";
+    Scanner j = new Scanner(System.in);
+    String llumMenjador = "off";
+    String llumCuina = "off";
+    String llumBany = "off";
+    String llumH1 = "off";
+    String llumH2 = "off";
+    String llumH3 = "off";
 
     public static void main(String[] args) {
-        Scanner j = new Scanner(System.in);
+        PE04_SanchezMiguel p = new PE04_SanchezMiguel();
+        p.principal();
+    }
+    public void principal() {
         int varPrincipal = 0;
         //Bucle principal del programa
         do {
+            try {
             System.out.println("\nBenvingut de nou - Que vols controlar?");
             System.out.println("1. Control de llums");
             System.out.println("2. Control de persianes");
@@ -44,7 +50,12 @@ public class PE04_SanchezMiguel {
                     System.out.println("Apagant el sistema domotic... Fins aviat");
                 break;
                 default:
+                    System.out.println("Opcio no valida.");
             }
+            } catch (InputMismatchException e) {
+                System.out.println(" Error: introdueix un número vàlid!");
+                j.nextLine(); // netejar buffer
+                }
         } while ( varPrincipal != 6);
 
         j.close();
@@ -54,10 +65,11 @@ public class PE04_SanchezMiguel {
 
     // - - - - - - - - - - Definicio de metodes - - - - - - - - - - 
     // - - - - - - - - - - Metode: Control de llums -  - - - - - - -
-    public static void controlarLlums(Scanner j) {
+    public void controlarLlums(Scanner j) {
         int varLlums = 0;
 
         do {
+            try {
             System.out.println("\nMenu controlador de llums");
             System.out.println("1. Encendre/Apagar llums d'una habitacio");
             System.out.println("2. Encendre/Apagar totes les llums");
@@ -83,11 +95,16 @@ public class PE04_SanchezMiguel {
                     System.out.println("Opcio no valida");
                     break;
             }
+                 } catch (InputMismatchException e) {
+                    System.out.println("Error: introdueix un número vàlid!");
+                     j.nextLine(); // netejar buffer
+                 }
         }   while (varLlums != 4);
     }
 
     //- - - - Metode per encendre o apagar una habitació concreta - - - - 
-    public static void controlarHabitacio(Scanner j) {
+    public void controlarHabitacio(Scanner j) {
+     try {
         System.out.println("\nSelecciona l'habitació: ");
         System.out.println("1- Menjador");
         System.out.println("2- Cuina");
@@ -126,11 +143,16 @@ public class PE04_SanchezMiguel {
                 System.out.println("Habitacio no valida");
                 return;
         }
-        controlarEstat(nomHabitacio, encesApagat);
+            controlarEstat(nomHabitacio, encesApagat);
+
+            } catch (InputMismatchException e) {
+                System.out.println("Error: introdueix un número vàlid!");
+                j.nextLine(); // netejar buffer
+            }
     }
 
     //- - - - - Comprovar estat per poder enviar els missatges - - - - -
-    public static void controlarEstat(String habitacio, String encesApagat) {
+    public void controlarEstat(String habitacio, String encesApagat) {
 
         switch (habitacio) {
             case "Menjador":
@@ -194,7 +216,7 @@ public class PE04_SanchezMiguel {
         }
 
     //- - - - - - - - Controlar totes les habitacions - - - - - - - - 
-    public static void controlarTotes (Scanner j) {
+    public void controlarTotes (Scanner j) {
         System.out.println("\nEscriu on/off per totes les habitacions: ");
         String encesApagat = j.next().toLowerCase();
 
@@ -208,7 +230,7 @@ public class PE04_SanchezMiguel {
         System.out.println("Totes les llums estan "  + encesApagat + "  correctament.");
     }
         //- - - - - - - - - - Mostar estat - - - - - - - - -
-    public static void mostrarEstat() {
+    public void mostrarEstat() {
         System.out.println("\nEstat actual de les llums:");
         System.out.println("Menjador ("  + llumMenjador + ")");
         System.out.println("Cuina ("  + llumCuina + ")");
@@ -220,7 +242,7 @@ public class PE04_SanchezMiguel {
 //---------------------------------------------------------------------
 //Aire, presianes, cortines i altaveus amb variables locals i sense automatitzacio.
 
-public static void controlarAire(Scanner j) {
+public void controlarAire(Scanner j) {
     String aireMenjador ="off";
     String aireCuina ="off";
     String aireH1 ="off";
@@ -230,6 +252,7 @@ public static void controlarAire(Scanner j) {
 
     int varAire = 0;
     do{
+        try {
         System.out.println("\nMENÚ AIRE CONDICIONAT");
         System.out.println("1. Encendre/Apagar una habitació");
         System.out.println("2. Encendre/Apagar tot l'aire condicionat");
@@ -290,7 +313,7 @@ public static void controlarAire(Scanner j) {
                 System.out.println("H1 (" + aireH1 + ")");
                 System.out.println("H2 (" + aireH2 + ")");
                 System.out.println("H3 (" + aireH3 + ")");
-                System.out.println("Bany (" + aireBany + ")");    
+                System.out.println("Bany (" + aireBany + ")");
             break;
             case 4:
                 System.out.println("Tornant al menu principal.....");
@@ -299,10 +322,14 @@ public static void controlarAire(Scanner j) {
                     System.out.println("Opcio no valida");
             break;
         }
+        } catch (InputMismatchException e) {
+            System.out.println("Error: introdueix un número vàlid!");
+            j.nextLine(); // netejar buffer
+        }
     }  while (varAire != 4);
 }
 
-public static void controlarPersianes(Scanner j) {
+public void controlarPersianes(Scanner j) {
     //var locals
     String  perMenjador = "off";
     String  perCuina = "off";
@@ -310,7 +337,7 @@ public static void controlarPersianes(Scanner j) {
     String  perH1 = "off";
     String  perH2 = "off";
     String  perH3 = "off";
-    int varPersianes =j.nextInt();
+    int varPersianes;
 
     do {
         System.out.println("\nMENÚ PERSIANES");
@@ -367,7 +394,7 @@ public static void controlarPersianes(Scanner j) {
                 System.out.println("Totes les persianes s'han posat " + accio + " correctament.");
             break;
             case 3:
-                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("\nEstat actual de les persianes:");
                 System.out.println("Menjador (" + perMenjador + ")");
                 System.out.println("Cuina (" + perCuina + ")");
                 System.out.println("H1 (" + perH1 + ")");
@@ -385,7 +412,7 @@ public static void controlarPersianes(Scanner j) {
     } while (varPersianes != 4);
 }
 
-public static void controlarCortines(Scanner j) {
+public void controlarCortines(Scanner j) {
     //var locals
     String  corMenjador = "off";
     String  corCuina = "off";
@@ -393,7 +420,7 @@ public static void controlarCortines(Scanner j) {
     String  corH1 = "off";
     String  corH2 = "off";
     String  corH3 = "off";
-    int varCortines = 0;
+    int varCortines = 0; 
 
     do {
         System.out.println("\nMENÚ CORTINES");
@@ -450,7 +477,7 @@ public static void controlarCortines(Scanner j) {
                 System.out.println("Totes les persianes s'han posat " + accio + " correctament.");
             break;
             case 3:
-                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("\nEstat actual de les persianes:");
                 System.out.println("Menjador (" + corMenjador + ")");
                 System.out.println("Cuina (" + corCuina + ")");
                 System.out.println("H1 (" + corH1 + ")");
@@ -468,7 +495,7 @@ public static void controlarCortines(Scanner j) {
     } while (varCortines != 4);
 }
 
-public static void controlarAltaveus(Scanner j) {
+public void controlarAltaveus(Scanner j) {
     //var locals
     String  altMenjador = "off";
     String  altCuina = "off";
@@ -532,7 +559,7 @@ public static void controlarAltaveus(Scanner j) {
                 System.out.println("Totes les persianes s'han posat " + accio + " altrectament.");
             break;
             case 3:
-                System.out.println("\n🪟 Estat actual de les persianes:");
+                System.out.println("\nEstat actual de les persianes:");
                 System.out.println("Menjador (" + altMenjador + ")");
                 System.out.println("Cuina (" + altCuina + ")");
                 System.out.println("H1 (" + altH1 + ")");
@@ -550,7 +577,7 @@ public static void controlarAltaveus(Scanner j) {
     } while (varAltaveus!= 4);
 }
 
-public static String comprovarEstatLocal(String habitacio, String onOff, String estatActual, String tipus) {
+public String comprovarEstatLocal(String habitacio, String onOff, String estatActual, String tipus) {
     if (estatActual.equals(onOff)) {
         System.out.println("El " + tipus + " del " + habitacio + " ja està " + onOff + ".");
     } else {
