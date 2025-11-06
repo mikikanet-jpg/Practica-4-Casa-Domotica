@@ -257,7 +257,8 @@ public void controlarAire(Scanner j) {
         System.out.println("1. Encendre/Apagar una habitació");
         System.out.println("2. Encendre/Apagar tot l'aire condicionat");
         System.out.println("3. Mostrar estat actual");
-        System.out.println("4. Tornar al menú principal");
+        System.out.println("4. Aumentar/Disminuir Temperatura Automatizada.");
+        System.out.println("5. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
         varAire = j.nextInt();
 
@@ -316,6 +317,9 @@ public void controlarAire(Scanner j) {
                 System.out.println("Bany (" + aireBany + ")");
             break;
             case 4:
+                automatitzarAire(j);
+            break;
+            case 5:
                 System.out.println("Tornant al menu principal.....");
             break;
             default:
@@ -327,6 +331,30 @@ public void controlarAire(Scanner j) {
             j.nextLine(); // netejar buffer
         }
     }  while (varAire != 4);
+}
+
+public void automatitzarAire(Scanner j) {
+    System.out.print("\nIntrodueix la temperatura actual (°C): ");
+    double temperatura = j.nextDouble();
+
+    System.out.print("A quina temperatura vols arribar (°C): ");
+    double objectiu = j.nextDouble();
+
+    if (temperatura <= objectiu) {
+        System.out.println("Ja estàs a una temperatura igual o inferior a l'objectiu!");
+        return;
+    }
+
+    System.out.println("Encenent l'aire condicionat...");
+    for (double t = temperatura; t >= objectiu; t -= 0.5) {
+        System.out.printf("Temperatura actual: %.1f °C%n", t);
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    System.out.println("Temperatura aconseguida: " + objectiu + " °C. Temperatura actualitzada.");
 }
 
 public void controlarPersianes(Scanner j) {
