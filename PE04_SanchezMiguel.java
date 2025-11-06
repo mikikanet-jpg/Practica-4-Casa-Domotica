@@ -26,7 +26,10 @@ public class PE04_SanchezMiguel {
             System.out.println("3. Control d'aire acondicionat");
             System.out.println("4. Control  d'altaveus");
             System.out.println("5. Control de cortines");
-            System.out.println("6. Sortir del programa");
+            System.out.println("6. Aumentar/Disminuir Temperatura Automatizada.");
+            System.out.println("7. Establir una hora perque es tanquin les cortines");
+            System.out.println("8. Establir el percentatge de opertura/tancada de les persianes");
+            System.out.println("9. Sortir del programa");
             System.out.println("Selecciona una opció");
             varPrincipal = j.nextInt();
 
@@ -47,6 +50,15 @@ public class PE04_SanchezMiguel {
                     controlarCortines(j);
                 break;
                 case 6:
+                    automatitzarAire(j);
+                break;
+                case 7:
+                    automatitzarCortines(j);
+                break;
+                case 8:
+                    automatitzarPersianes(j);
+                break;
+                case 9:
                     System.out.println("Apagant el sistema domotic... Fins aviat");
                 break;
                 default:
@@ -257,8 +269,7 @@ public void controlarAire(Scanner j) {
         System.out.println("1. Encendre/Apagar una habitació");
         System.out.println("2. Encendre/Apagar tot l'aire condicionat");
         System.out.println("3. Mostrar estat actual");
-        System.out.println("4. Aumentar/Disminuir Temperatura Automatizada.");
-        System.out.println("5. Tornar al menú principal");
+        System.out.println("4. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
         varAire = j.nextInt();
 
@@ -317,9 +328,6 @@ public void controlarAire(Scanner j) {
                 System.out.println("Bany (" + aireBany + ")");
             break;
             case 4:
-                automatitzarAire(j);
-            break;
-            case 5:
                 System.out.println("Tornant al menu principal.....");
             break;
             default:
@@ -440,6 +448,28 @@ public void controlarPersianes(Scanner j) {
     } while (varPersianes != 4);
 }
 
+// - - - - - - - - - - PERSIANES AUTOMATITZADES - - - - - - - - - -
+public void automatitzarPersianes(Scanner j) {
+    System.out.print("\nFins a quin percentatge vols tancar les persianes (0-100): ");
+    int objectiu = j.nextInt();
+
+    if (objectiu < 0 || objectiu > 100) {
+        System.out.println("Valor no vàlid! Escriu un número entre 0 i 100.");
+        return;
+    }
+
+    System.out.println("Tancant les persianes fins al " + objectiu + "%...");
+    for (int percentatge = 0; percentatge <= objectiu; percentatge += 10) {
+        System.out.println("Percentatge actual: " + percentatge + "%");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    System.out.println("Persianes tancades fins al " + objectiu + "% correctament!");
+}
+
 public void controlarCortines(Scanner j) {
     //var locals
     String  corMenjador = "off";
@@ -455,8 +485,7 @@ public void controlarCortines(Scanner j) {
         System.out.println("1. Obrir/Tancar una cortina");
         System.out.println("2. Obrir/Tancar totes les cortines");
         System.out.println("3. Mostrar estat actual");
-        System.out.println("4. Establir una hora perque es tanquin les cortines");
-        System.out.println("5. Tornar al menú principal");
+        System.out.println("4. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
         varCortines = j.nextInt();
 
@@ -515,9 +544,6 @@ public void controlarCortines(Scanner j) {
                 System.out.println("Bany (" + corBany + ")");
             break;
             case 4:
-                automatitzarCortines(j);
-            break;
-            case 5:
                 System.out.println("Tornant al menú principal...");
             break;
             default:
