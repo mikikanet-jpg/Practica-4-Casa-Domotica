@@ -427,7 +427,8 @@ public void controlarCortines(Scanner j) {
         System.out.println("1. Obrir/Tancar una cortina");
         System.out.println("2. Obrir/Tancar totes les cortines");
         System.out.println("3. Mostrar estat actual");
-        System.out.println("4. Tornar al menú principal");
+        System.out.println("4. Establir una hora perque es tanquin les cortines");
+        System.out.println("5. Tornar al menú principal");
         System.out.print("Selecciona una opció: ");
         varCortines = j.nextInt();
 
@@ -486,6 +487,9 @@ public void controlarCortines(Scanner j) {
                 System.out.println("Bany (" + corBany + ")");
             break;
             case 4:
+                automatitzarCortines(j);
+            break;
+            case 5:
                 System.out.println("Tornant al menú principal...");
             break;
             default:
@@ -493,6 +497,36 @@ public void controlarCortines(Scanner j) {
             break;
         }
     } while (varCortines != 4);
+}
+
+public void automatitzarCortines(Scanner j) {
+    System.out.print("\nA quina hora vols tancar les cortines (0-23): ");
+    int horaObjectiu = j.nextInt();
+
+    if (horaObjectiu < 0 || horaObjectiu > 23) {
+        System.out.println("Hora no vàlida!");
+        return;
+    }
+
+    System.out.println("Simulant el pas del temps...");
+    for (int hora = 0; hora < 24; hora++) {
+        System.out.println("Hora actual: " + hora);
+        if (hora == horaObjectiu) {
+            System.out.println("Les cortines s'estan tancant automàticament...");
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Les cortines s'han tancat correctament!");
+            break;
+        }
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 public void controlarAltaveus(Scanner j) {
@@ -582,7 +616,7 @@ public String comprovarEstatLocal(String habitacio, String onOff, String estatAc
         System.out.println("El " + tipus + " del " + habitacio + " ja està " + onOff + ".");
     } else {
         estatActual = onOff;
-        System.out.println("El " + tipus + " del " + habitacio + " s'ha posat " + onOff + " correctament.");
+        System.out.println("El " + tipus + " del " + habitacio + " esta " + onOff + " correctament.");
     }
     return estatActual;
 }
